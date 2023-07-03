@@ -1,0 +1,483 @@
+*{
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+/* Selects the root element of the document:
+   <html> in the case of HTML */
+   :root {
+
+    /* --shoveboxheight :1.5em; */
+    --shoveboxheight :1.5em;
+
+    --shoveboxborder :1 px;
+
+
+    --shoveboxbordercolordefault : rgba(0, 0, 0, 0.125);
+
+    --shoveboxbordercolorselected : black;
+    /* --shoveboxbordercolorselected :rgb(205, 232, 255); */
+
+    --shoveboxborderselectedwidth :2px; 
+    --shoveboxbordertargetedwidth :4px; 
+
+    /* gripheight bepaald door inhoud vermits flex-inline */
+    --gripradius :2px;
+    --shoveboxplaceholderheight : 0.06rem;
+    --shoveboxplaceholderoverheight : 1.5rem;
+
+    --borderscolor :  #ccc;
+
+ /* color of freed space to left of slider's thumb */
+    --freespacecolor :transparent;
+/* typewitch parameters */
+
+    /* --radiounit:30px;
+    --radiotextunit:1em; */
+    /* --radioheight: calc(var(--radiotextunit ) * 1.175); */
+    /* --indicatordisplacement:  calc(var(--radiotextunit ) * 1.175); */
+ 
+    --radiodot: calc(     var(--shoveboxheight) * 0.9 );
+
+
+    --typeswitchborder: 2px;
+
+    --radiotextlength: 4;
+    --radiotexttotalwidth: calc((var(--radiotextlength) + 1) * 1em);
+    
+    /* colors for tri-state typeswitch */
+    --colorSelected :rgb(204,232,255);
+    --targetSelected :red;
+    --color0 :rgb(235,235,235); 
+    --color1 :rgb(203,235,194);
+    --color2 : rgb(239,225,207);
+
+    /* --colorSelected :yellow; 
+    --color0 :rgb(235,235,235); 
+    --color1 :rgb(203,235,194);
+    --color2 : rgb(215,216,240); */
+
+    /* --colorSelected :rgb(215,216,240);
+    --color0 :white; 
+    --color1 :rgb(203,235,194);
+    --color2 : rgb(235,235,235);  */
+
+    --font-size:   normal;
+    --fontWeight0 : normal;
+    --fontWeight1 : bold ;
+    --fontWeight2 : normal;
+
+  }
+  
+.shoveboxlist {
+
+     /* https://stackoverflow.com/questions/24881560/horizontal-overflow-scroll-not-working */
+
+     border-style: solid;
+     border-color: gray;
+     border-width: 2px;
+     padding-left: 0px;
+     overflow-y:scroll; 
+     overflow-x:auto;
+     
+}
+
+
+
+
+div[shoveboxselected="true"]  {
+
+  border-color: var(--shoveboxbordercolorselected);
+  /* border-width: var( --shoveboxborderselectedwidth) ; */
+
+  border-bottom-width:var( --shoveboxborderselectedwidth) ;
+  border-top-width:var( --shoveboxborderselectedwidth) ;
+}
+
+
+
+/* Applies to all input of which the parent node is shovebox with attribute  shoveboxselected="true" */
+/* https://www.w3schools.com/cssref/css_selectors.php */
+/* IMportant is necessary to override the attributes set by javascript */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/important */
+
+.shovebox[shoveboxselected="true"] > input {
+  
+  background-color: var(--colorSelected) !important;
+}
+
+
+.shovebox[shoveboxselected="true"]  {
+  
+  background-color: var(--colorSelected) !important;
+}
+
+/* .shovebox[shoveboxselected="true"] > .typeswitch  {
+  
+  background-color: var(--colorSelected) !important;
+} */
+
+.shovebox[shoveboxselected="true"] > select  {
+  
+  background-color: var(--colorSelected) !important;
+}
+
+.shovebox[shoveboxselected="true"] > label  {
+  
+  background-color: var(--colorSelected) !important;
+}
+
+
+
+div[targetselected="true"]  {
+
+  border-bottom-width:var( --shoveboxbordertargetedwidth) ;
+  border-bottom-color: var(--targetSelected);
+}
+/* 
+.shovebox[targetselected="true"] > input {
+  
+  background-color: var(--targetSelected) !important;
+}
+
+
+.shovebox[targetselected="true"]  {
+  
+  background-color: var(--targetSelected) !important;
+}
+
+.shovebox[targetselected="true"] > .typeswitch  {
+  
+  background-color: var(--targetSelected) !important;
+}
+
+.shovebox[shoveboxselected="true"] > select  {
+  
+  background-color: var(--targetSelected) !important;
+}
+
+.shovebox[targetselected="true"] > label  {
+  
+  background-color: var(--targetSelected) !important;
+} */
+
+
+
+
+
+.shovebox {
+
+  width: 100%; /* Width of the outside container */
+  min-width: 650px;
+  background-color: var( --freespacecolor  );
+  height: var(--shoveboxheight);
+  position: relative;
+  display: block;
+  text-decoration: none;
+  /* border: var(--shoveboxborder) solid  var(--shoveboxbordercolordefault) ; */
+  border: 0 solid  var(--shoveboxbordercolordefault) ; 
+  overflow:hidden;
+  white-space: nowrap;
+  padding:0;
+  display: inline-flex;
+  align-items: center;
+
+}
+
+
+input[type="text"], textarea {
+    border-top-width: initial;
+    border-right-width: 1px;
+    border-bottom-width: initial;
+    border-left-width: initial;
+
+    /* border-style: none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset|initial|inherit; */
+    border-top-style: initial;
+    border-right-style: dotted;
+    border-bottom-style: initial;
+    border-left-style: initial;
+    border-top-color:initial;
+    border-right-color: var(  --borderscolor);
+    border-bottom-color:initial;
+    border-left-color: initial;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+
+    font-size : var( --font-size);
+
+}
+
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  font-size : var( --font-size);
+}
+
+input[type=radio] {
+  font-size : var( --font-size);
+}
+
+.shoveboxplaceholder {
+  padding-top: 0.05rem; 
+  height: var(--shoveboxplaceholderheight);
+  background-color: white;
+  padding:0px;
+
+}
+
+.slider {
+
+/* Override default CSS styles */
+  appearance: none;
+  width: calc( 7 * var(--shoveboxheight ));
+  position:absolute;
+  background-color: rgba(0,0,0,0);
+  height:0;
+  margin:0;
+  
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -moz-appearance: none !important;/* Override default look */
+  appearance: none !important;
+  width: var(--shoveboxheight); /* Set a specific slider handle width */
+  height: var(--shoveboxheight)  ;        /* Slider handle height */
+  /* border-radius:var(--gripradius); */
+  cursor: pointer; /* Cursor on hover */
+  background: conic-gradient(
+		from 45deg,
+		gray  0,
+		gray 90deg,
+		darkgray 90deg,
+		darkgray 180deg,
+		lightgray 180deg,
+		lightgray  270deg,
+		white  270deg,
+		white  360deg
+	);
+	background-size: 4px 4px;
+  cursor: grab;
+
+}
+
+.slider::-moz-range-thumb {
+  -moz-appearance: none !important;/* Override default look */
+  appearance: none !important;/* Override default look */
+  width: var(--shoveboxheight); /* Set a specific slider handle width */
+  height: var(--shoveboxheight); /* Slider handle height */
+  border-radius:var(--gripradius);
+  cursor: pointer; /* Cursor on hover */
+  background: conic-gradient(
+		from 45deg,
+		gray  0,
+		gray 90deg,
+		darkgray 90deg,
+		darkgray 180deg,
+		lightgray 180deg,
+		lightgray  270deg,
+		white  270deg,
+		white  360deg
+	);
+	background-size: 4px 4px;
+  cursor: grab;
+
+}
+
+.ref .sbfield {
+  z-index: 1 ;
+  text-align: right;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* Tooltip container */
+.sbtooltip {
+  position: relative;
+  display: inline-flex;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.sbtooltip .sbtooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  /* Position the tooltip text */
+  position: absolute;
+    /* necessary to show tooltips in relation to other elements*/
+  z-index: 2;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.sbtooltip .sbtooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.sbtooltip:hover .sbtooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ---------------------------------- */
+/*             TYPEWITCH              */
+/* ---------------------------------- */
+.typebutton{
+
+  /* height: var(  --radiodot);
+  width:  var(  --radiodot); */
+
+  height :calc(0.75*var(  --radiodot)); 
+  width  :calc(0.75*var(  --radiodot)); 
+
+
+  margin: 0;
+
+/* position:inherit; */
+  appearance: none;
+  background-color:white;
+  border-radius: 50%;
+  opacity: 0;
+  /* box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit; */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.66);
+  /* necessary to show tooltips */
+  z-index: +1;
+  cursor: pointer;
+}
+.typeswitch:before {
+  background-color :red;
+}
+.typeswitch {
+  /* border: var(--typeswitchborder) solid  ; */
+  
+  /* height: calc(  var(  --radiodot)  + var(--typeswitchborder)  ); */
+
+  height: var(--font-size); 
+  background-color :var( --color0 );
+
+  /* border-radius: var(  --radiodot); */
+  border-radius:var(  --radiodot); 
+
+  border: 0;
+  margin: 0,4,0,0;
+  display:inline-flex;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+.typeswitch .slider {
+  background-color: red;
+}
+
+.typeswitch  input.typebutton:checked      {
+  opacity: 1;
+
+}
+
+body {
+  font-family: var(--bs-font-sans-serif);
+
+  align-items: center;
+  justify-content: center;
+}
+
+input.deletecheckbox[type="checkbox"]
+{
+  display: none;
+  margin: 0px;
+  border:0px;
+  padding:0px;
+
+}
+
+label.deletecheckbox-label {
+  border: 0px ;
+  top: 0px;
+  padding: 0px 0px 0px 10px;
+  display: block;
+  position: relative;
+  margin: 0px;
+  cursor: pointer;
+  font-size : var( --font-size);
+}
+
+label.deletecheckbox-label:before {
+  /* background-color: white; */
+  color: red;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  /* border: 1px solid grey; */
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  width: var(--radiodot);
+  height: var(--radiodot);
+  text-align: top;
+  line-height: var(--radiodot);
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label.deletecheckbox-label img {
+  height: calc(var(--radiodot)*0.75);
+  width: calc(var(--radiodot)*0.7);
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+/* :checked + label {
+  border-color: #ddd;
+} */
+
+:checked + label.deletecheckbox-label:before {
+  content: "X";
+  font-weight: 900;
+  background-color: none;
+  transform: scale(1);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+:checked + label.deletecheckbox-label img {
+  transform: scale(0.7);
+  /* box-shadow: 0 0 5px #333; */
+  z-index: -1;
+}
