@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo</title>
+
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: auto 90% auto ;
+      gap: 10px;
+      padding: 10px;
+    }
+    
+    .grid-container > div {
+      text-align: center;
+    }
+    </style>
+
+  {% block header %}
+
+  {% endblock header %}
+
+ </head>
+
+
+ <body>
+ 
+       
+    {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+    {% endif %}
+
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+
+
+<footer>
+    {% block footer %}
+    {% endblock footer %}
+</footer>
+
+</html>

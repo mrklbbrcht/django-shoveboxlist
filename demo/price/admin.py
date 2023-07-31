@@ -1,3 +1,15 @@
 from django.contrib import admin
+from .models import Bom, Package
 
-# Register your models here.
+
+class PackageAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Package, PackageAdmin)
+
+
+
+class BomAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Bom, BomAdmin)
+
+

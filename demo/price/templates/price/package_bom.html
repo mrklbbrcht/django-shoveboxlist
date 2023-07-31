@@ -1,0 +1,93 @@
+{% extends "price/base.html" %}
+
+{% block header %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'shoveboxlist/css/shoveboxlist.css' %}">
+<link rel="stylesheet" href="{% static 'shoveboxlist/css/context-menu.css' %}">
+
+{% endblock header %}
+
+
+{% block content %}
+
+
+<template id="id_formset_empty_form">{{ formset.empty_form.as_shoveboxlist   }}</template>
+<form method="post" >
+
+{% csrf_token %}
+
+
+
+
+
+<div class="grid-container">
+    <div></div>
+    <div>
+        <row>
+            <h1>Shoveboxlist Demo</h1>
+        </row>
+        <div id="shoveboxlist1"  class="shoveboxlist"  style="text-align: center;height: 500px" minlevel="1" maxlevel="6" autoref="true" >
+            {{ formset.management_form }}
+                {% for form in formset    %}
+                    {{form.as_shoveboxlist}}  
+                {% endfor  %}
+        </div>
+
+
+    </div>
+    <div></div>  
+  
+  </div>
+
+
+</div>
+
+{% comment %} <div  style="width: 60%; position: absolute; top: 5%; left: 10%; min-width: 800px";> {% endcomment %}
+
+
+
+
+  {% comment %} <p>
+
+  <input type="submit" value="Bewaar" onclick="updateNameAttributes('shoveboxlist1')">
+  <a  href="{% url 'price:table'  %}">Table</a>                        
+  </p> {% endcomment %}
+{% comment %} </div> {% endcomment %}
+
+
+
+
+</form>
+
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+shoveboxlist = document.getElementById("shoveboxlist")
+});
+
+</script>
+
+{% endblock content %}
+
+{% block footer %}
+
+<script src="{% static 'shoveboxlist/js/context-menu.js' %}">;
+</script>
+
+<script>
+var  detailEditUrl =    "{{detail_edit_url }}" ;
+var basePrefix =  "{{base_prefix }}" ;
+
+
+</script>
+
+
+<script src="{% static 'shoveboxlist/js/shoveboxlist.js' %}">;
+</script>
+
+
+{% endblock footer %}

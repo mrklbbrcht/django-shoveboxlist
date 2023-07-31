@@ -3,22 +3,11 @@ from sys import maxsize
 from django.db import models
 
 
-UNIT_CHOICES= [
-    ( 1, 'Piece'),
-    (2, 'm'),
-    (3, 'm²'),
-    (4, 'hours'),
-    ]
-
-TYPE_CHOICES= [
-    ( 1, 'Lump sum'),
-    ( 2, 'Fixed Quantity'),
-    ( 3, 'Estimated Quantity'),
-    ]
-
-
 class Package(models.Model):
     description = models.CharField(max_length=120,verbose_name='Package description')    
+
+    def __str__(self):
+        return self.description
 
 class Bom(models.Model):
     class RecordType(models.TextChoices): 
@@ -48,9 +37,10 @@ class Bom(models.Model):
         C = "C",  'Comment'
 
     package = models.ForeignKey(Package,on_delete=models.CASCADE)
-    level = models.IntegerField(default=0,blank=True, null=True)
+    level = models.IntegerField(default=0)
     recordtype = models.CharField( max_length=1, choices=RecordType.choices, default= RecordType.N)
-    reference = models.CharField(verbose_name='Reference',max_length=20,blank=True, null=True)  
+    ref = models.CharField(verbose_name='Reference',max_length=20,blank=True, null=True)  
+    article = models.CharField(verbose_name='Article',max_length=20,blank=True, default="")  
     description = models.CharField(max_length=120,verbose_name='Price Item')
     unit_type =  models.CharField( max_length=2, verbose_name='Unit Type',choices=UnitTypes.choices, default= UnitTypes.FQ ) 
     unit =  models.IntegerField(choices=Units.choices, default= Units.PC) 
@@ -59,9 +49,9 @@ class Bom(models.Model):
   
 
     def __str__(self):
-        return self.description
+        return self.ref+" -  "+self.description + " "+ str(self.quantity) +" "+self.unit_type+" "+str(self.unit_price)
 
     class Meta:
-       ordering=["reference"]
+       ordering=["ref"]
 
     
