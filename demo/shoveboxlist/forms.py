@@ -21,9 +21,9 @@ class ShoveBox(ModelForm):
         return self.render(self.template_name_table)
     
     def as_shoveboxlist(self):
-        vorm = self.render(self.template_name_shoveboxlist)
+        shoveboxform = self.render(self.template_name_shoveboxlist)
         pf = self.prefix
-        return vorm
+        return shoveboxform
 
 
 

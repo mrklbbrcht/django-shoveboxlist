@@ -500,7 +500,7 @@ function initializeTypeswitches(shovebox) {
           typeButtonArray[2].parentNode.style.borderColor = backgrounColors[2] ;
           break;
         default:
-          console.log(`Sorry, we are out of it.`);
+          console.log(`Did not found a single checked 'typebutton' in the RecordType Widget'. Have to bail out. Will look ugly`);
       };
 
 }

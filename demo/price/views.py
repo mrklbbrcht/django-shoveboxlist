@@ -68,6 +68,18 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
     #     return super().post(request, *args, **kwargs)
 
 
+
+
+
+
+
+
+
+# RENDER TO RESPONSE WAS REMOVE IN DJANGO 3.0
+
+
+
+
     def render_to_response(self, context, **response_kwargs):
 
         response_kwargs.setdefault("content_type", self.content_type)
@@ -79,6 +91,8 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
 
         # strip 2 last characters  -0 from first indexed form
         context['base_prefix'] =  fs.forms[0].prefix[:-2]
+
+
 
         return self.response_class(
             request=self.request,
