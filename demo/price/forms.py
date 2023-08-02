@@ -1,22 +1,23 @@
 from django.forms import  RadioSelect,ModelForm,DecimalField
+from django.forms.widgets import NumberInput
 from price.models import Bom
 from shoveboxlist.forms import ShoveBox
-from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch, TextInput, SbTextInput,Select
+from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch, TextInput, SbTextInput, SbNumberInput, SbSelect
 
 import calculation
 
 
 class PackageBomForm(ShoveBox):
 
-    #     # Add calculated field (using django-calculation)         
-    # amount = DecimalField(  widget=calculation.FormulaInput('quantity*price'))
+        # Add calculated field (using django-calculation)         
+    amount = DecimalField(  widget=calculation.FormulaInput('quantity*unit_price', attrs={  'class':'sbfield','visibility':'100','step': '1'}))
 
 
     class Meta:
         model = Bom
 
-        # fields = ['level',	'recordtype','ref', 'article', 'description', 'unit_type','unit','quantity' ,'unit_price' ,'amount']
-        fields = ['level',	'recordtype','ref', 'article', 'description', 'unit_type','unit','quantity' ,'unit_price']
+        fields = ['level',	'recordtype','ref', 'article', 'description', 'unit_type','unit','quantity' ,'unit_price' ,'amount']
+        # fields = ['level',	'recordtype','ref', 'article', 'description', 'unit_type','unit','quantity' ,'unit_price']
 
         # For all fields a Shoveboxlist compatible widget has to be specified
         # Adding the visibility mask determines for which recordtype the field is visible ( 1 = visible, 0 = invisible )
@@ -33,11 +34,15 @@ class PackageBomForm(ShoveBox):
          'ref': Reference(attrs={ 'class':'ref sbfield', 'size':'5','visibility':'110' , }),
          'description': SbTextInput(attrs={ 'class':'shrinkable sbfield','visibility':'111',}),
 
-         'article' : SbTextInput(attrs={ 'class':'sbfield','visibility':'100',}),
-         'unit_type': SbTextInput(attrs={ 'class':'sbfield','visibility':'100',}),
-         'unit':SbTextInput(attrs={ 'class':'sbfield','visibility':'100',}),
-         'quantity': SbTextInput(attrs={ 'class':'sbfield','visibility':'100',}),
-         'unit_price': SbTextInput(attrs={ 'class':'sbfield','visibility':'100',}),
+         'article' : SbTextInput(attrs={ 'class':'sbfield','visibility':'100','size':'6',}),
+         'unit_type': SbSelect(attrs={ 'visibility':'100','class':'sbselectfield'}),
+         'unit':SbSelect(attrs={ 'class':'sbselectfield','visibility':'100',}),
+
+         'quantity':SbNumberInput(     attrs={  'class':'sbnumberfield','visibility':'100','step': '1','style': 'width:10ch',}),
+         'unit_price':SbNumberInput(     attrs={  'class':'sbnumberfield','visibility':'100','step': '1','style': 'width:10ch'})
+
+
+
           }
         
  

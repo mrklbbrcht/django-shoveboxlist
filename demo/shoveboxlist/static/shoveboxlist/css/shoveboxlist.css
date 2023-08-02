@@ -97,10 +97,48 @@ div[shoveboxselected="true"]  {
 
 
 
+
+.sbselectfield   {
+
+  /* border-color: var(--color0) ;
+  border-width: 0px ; */
+
+
+
+  /* avoid firefox 3D border style */
+  /* border-style: solid; */
+
+  border-width: 0px;
+  font-size : var( --font-size);
+}
+
+
+.sbnumberfield   {
+  /* removes the spinners in Firefox */
+    -moz-appearance: textfield;
+  
+    text-align: right;
+    font-size : var( --font-size);
+  
+    border:none ;
+  }
+
+
 /* Applies to all input of which the parent node is shovebox with attribute  shoveboxselected="true" */
 /* https://www.w3schools.com/cssref/css_selectors.php */
 /* IMportant is necessary to override the attributes set by javascript */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/important */
+
+
+/* input[type=number] {
+
+
+
+  
+} */
+
+
+
 
 .shovebox[shoveboxselected="true"] > input {
   
@@ -212,11 +250,10 @@ input[type="text"], textarea {
 }
 
 
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-  font-size : var( --font-size);
-}
+
+
+
+
 
 input[type=radio] {
   font-size : var( --font-size);
@@ -293,6 +330,13 @@ input[type=radio] {
   z-index: 1 ;
   text-align: right;
 }
+
+
+
+
+
+
+
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

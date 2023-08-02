@@ -109,7 +109,7 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
 class ShoveBoxListEdit(generic.edit.UpdateView):
     model = Bom
     form_class= ShoveBoxBomForm
-    success_url = reverse_lazy("author:author_boeks",  kwargs={'pk': 1}) 
+    success_url = reverse_lazy("price:sbl_bom_edit",  kwargs={'pk': 2}) 
 
 
 

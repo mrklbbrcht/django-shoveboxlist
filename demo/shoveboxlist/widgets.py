@@ -44,6 +44,9 @@ class SbTextInput(TextInput):
     input_type = "text"
     template_name = "shoveboxlist/widgets/sbtextinput.html"
 
+class SbNumberInput(NumberInput):
+    input_type = "number"
+    template_name = "shoveboxlist/widgets/sbnumberinput.html"
 
 
 class DeleteCheckbox(CheckboxInput):
@@ -51,3 +54,5 @@ class DeleteCheckbox(CheckboxInput):
 
 
 
+class SbSelect(Select):
+    template_name = "shoveboxlist/widgets/sbselect.html"
