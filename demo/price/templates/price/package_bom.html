@@ -3,58 +3,38 @@
 {% block header %}
 
 {% load static %}
-
-<link rel="stylesheet" href="{% static 'shoveboxlist/css/shoveboxlist.css' %}">
-<link rel="stylesheet" href="{% static 'shoveboxlist/css/context-menu.css' %}">
-
+    <link rel="stylesheet" href="{% static 'shoveboxlist/css/shoveboxlist.css' %}">
+    <link rel="stylesheet" href="{% static 'shoveboxlist/css/context-menu.css' %}">
 {% endblock header %}
 
-
 {% block content %}
-
-
-<template id="id_formset_empty_form">{{ formset.empty_form.as_shoveboxlist   }}</template>
-<form method="post" >
-
-{% csrf_token %}
-
-
-
-
-
-<div class="grid-container">
-    <div></div>
-    <div>
-        <row>
-            <h1>Shoveboxlist Demo</h1>
-         
-           <h2>Package: {{package}}</h2> 
-           <h2>Select package 
-           <select name="pack" id="id_pack"  onchange="changepackage(this.value)"   >
-            <option value="0">---------</option>
-                {% for p in packagelist %}  <option value={{p.0}}>{{p.1}}</option>  {% endfor %}
-            </select>
-        </h2>
-        </row>
-        </br>
-
-        <div id="shoveboxlist1"  class="shoveboxlist"  style="text-align: center;height: 500px" minlevel="1" maxlevel="6" autoref="true" >
-            {{ formset.management_form }}
-                {% for form in formset    %}
-                    {{form.as_shoveboxlist}}  
-                {% endfor  %}
+    <template id="id_formset_empty_form">{{ formset.empty_form.as_shoveboxlist   }}</template>
+    <form method="post" >
+    {% csrf_token %}
+    <div class="grid-container">
+        <div></div>
+        <div>
+            <row>
+                <h1>Shoveboxlist Demo</h1>
+            <h2>Package: {{package}}</h2> 
+            <h2>Select package 
+            <select name="pack" id="id_pack"  onchange="changepackage(this.value)"   >
+                <option value="0">---------</option>
+                    {% for p in packagelist %}  <option value={{p.0}}>{{p.1}}</option>  {% endfor %}
+                </select>
+            </h2>
+            </row>
+            </br>
+            <div id="shoveboxlist1"  class="shoveboxlist"  style="text-align: center;height: 400px" minlevel="1" maxlevel="6" autoref="true" >
+                {{ formset.management_form }}
+                    {% for form in formset    %}
+                        {{form.as_shoveboxlist}}  
+                    {% endfor  %}
+            </div>
+            <p><input type="submit"  style="font-size : 20px; width: 100px; height: 50px;" value="Save" onclick="updateNameAttributes('shoveboxlist1')"></p> 
         </div>
-
-        <p><input type="submit"  style="font-size : 20px; width: 100px; height: 50px;" value="Save" onclick="updateNameAttributes('shoveboxlist1')"></p> 
-
+        <div></div>  
     </div>
-    <div></div>  
-  
-  </div>
-
-
-</div>
-  
 
 </form>
 

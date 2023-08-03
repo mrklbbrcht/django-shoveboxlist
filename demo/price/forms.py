@@ -6,16 +6,33 @@ from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch,Select, SbT
 
 from calculation import FormulaInput
 
+from django.core.exceptions import ValidationError
+
+
+# overwrite the Decimalfield to be used for calculated fields only
+class CalcDecimalField(DecimalField):
+# No need to raise an validation error since it is a calculated field, not persisted to the database
+    def validate(self, value):
+        if value in self.empty_values and self.required:
+            pass
+
+
+
 
 class PackageBomForm(ShoveBox):
 
 
         # Add calculated field (using django-calculation)         
-    amount = DecimalField( widget= SbFormulaInput ('quantity*unit_price') )
+    amount = CalcDecimalField( widget= SbFormulaInput ('quantity*unit_price') )
     amount.widget.attrs['visibility']='100'
     amount.widget.attrs['style']='width:10ch' 
     amount.widget.attrs['class']='sbformulafield'
 
+
+    # def clean_amount(self):
+    #     amount = self.cleaned_data['amount']
+    #     return amount
+    
 #  attrs={  'class':'sbnumberfield','visibility':'100','step': '1','style': 'width:10ch'}
 
     class Meta:
