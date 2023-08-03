@@ -6,10 +6,16 @@
 
 <form method="post" enctype="multipart/form-data" action="">
 
+
 {% csrf_token %}
+
+
+
+
 {{form.as_p}}
 
-<input type="submit" value="Bewaar" />
+
+<input type="submit" value="Save" />
 
 </form>
 

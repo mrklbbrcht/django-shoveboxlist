@@ -27,7 +27,17 @@
     <div>
         <row>
             <h1>Shoveboxlist Demo</h1>
+         
+           <h2>Package: {{package}}</h2> 
+           <h2>Select package 
+           <select name="pack" id="id_pack"  onchange="changepackage(this.value)"   >
+            <option value="0">---------</option>
+                {% for p in packagelist %}  <option value={{p.0}}>{{p.1}}</option>  {% endfor %}
+            </select>
+        </h2>
         </row>
+        </br>
+
         <div id="shoveboxlist1"  class="shoveboxlist"  style="text-align: center;height: 500px" minlevel="1" maxlevel="6" autoref="true" >
             {{ formset.management_form }}
                 {% for form in formset    %}
@@ -71,6 +81,17 @@ shoveboxlist = document.getElementById("shoveboxlist")
 var  detailEditUrl =    "{{detail_edit_url }}" ;
 var basePrefix =  "{{base_prefix }}" ;
 
+
+
+function changepackage(newid) {
+
+    const url = new URL(location.protocol + '//' + location.host + location.pathname);
+    let path = url.pathname.split("/");
+    path.pop(); // remove the last
+    url.pathname = path.join("/");
+    newurl = location.protocol + '//' + location.host +url.pathname+'/'+newid;
+    window.location.replace(newurl);
+}
 
 </script>
 {% comment %} https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import {% endcomment %}

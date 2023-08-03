@@ -11,6 +11,7 @@ import json
 from django.urls import reverse_lazy
 
 from django.http import HttpResponseRedirect
+import json
 
 class BillOfMaterialsFormView(generic.edit.UpdateView):
     model = Package
@@ -18,8 +19,17 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
     fields = ( 'id',)   
 
 
-    # def get_success_url(self, **kwargs):
-    #     return self.object.get_author_boeks_url()
+    # Make a simple dropdown select box to pick a package ( = foreign key )
+    # Get the available packages and push them to the context via render_to_response
+    packages = Package.objects.all().order_by('id')
+    packagelist = []
+
+    for p in packages:
+        packagelist.append((p.id,p.description))
+
+
+    
+
 
 
     def get_context_data(self, **kwargs):
@@ -40,8 +50,25 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
 
 
         else:
+
+
             context['formset'] = PackageBomFormSet( instance=package, queryset=queryset)
-        context['author'] = package
+
+        # context['author'] = package
+
+
+
+    # def __init__(self, *args, **kwargs):
+    #     package_id = int(kwargs.pop('package_id',None))
+    #     super(BillOfMaterialsFormView,self).__init__(*args, **kwargs)
+    #     self.fields['package'].initial = package_id
+
+
+    # bom_package_select = ChoiceField(choices=packagelist,  widget=Select(attrs={'onchange': 'form.submit();'}))
+
+
+
+
 
         return context
 
@@ -55,27 +82,6 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
                 return response
             else:
                 return super().form_invalid(form) 
-
-
-    # def get(self, request, *args, **kwargs):
-    #     self.object = self.get_object()
-
-    #     return super().get(request, *args, **kwargs)
-
-
-    # def post(self, request, *args, **kwargs):
-    #     self.object = self.get_object()
-    #     return super().post(request, *args, **kwargs)
-
-
-
-
-
-
-
-
-
-# RENDER TO RESPONSE WAS REMOVE IN DJANGO 3.0
 
 
 
@@ -94,6 +100,11 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
 
 
 
+
+        # add also the available packages to the context to establish the select element
+        context['packagelist'] = self.packagelist
+
+
         return self.response_class(
             request=self.request,
             template=self.get_template_names(),
@@ -104,24 +115,14 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
 
 
 
-
-
 class ShoveBoxListEdit(generic.edit.UpdateView):
     model = Bom
     form_class= ShoveBoxBomForm
     success_url = reverse_lazy("price:sbl_bom_edit",  kwargs={'pk': 2}) 
 
 
-
-
 def home(request):
     """Renders the home page."""
 
-    return HttpResponseRedirect('/price/bom/2')
+    return HttpResponseRedirect('/price/bom/1')
 
-
-
-# class BomTableListView(SingleTableView):
-#     model = Bom
-#     table_class = Bom
-#     template_name = 'boek/boek_table.html'

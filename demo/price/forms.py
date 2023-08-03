@@ -1,13 +1,14 @@
-from django.forms import  RadioSelect,ModelForm,DecimalField
+from django.forms import  RadioSelect,ModelForm,DecimalField, ChoiceField
 from django.forms.widgets import NumberInput
-from price.models import Bom
+from price.models import Bom,Package
 from shoveboxlist.forms import ShoveBox
-from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch, TextInput, SbTextInput, SbNumberInput, SbSelect, SbFormulaInput
+from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch,Select, SbTextInput, SbNumberInput, SbSelect, SbFormulaInput
 
 from calculation import FormulaInput
 
 
 class PackageBomForm(ShoveBox):
+
 
         # Add calculated field (using django-calculation)         
     amount = DecimalField( widget= SbFormulaInput ('quantity*unit_price') )
@@ -48,6 +49,14 @@ class PackageBomForm(ShoveBox):
           }
         
  
+    def __init__(self, *args, **kwargs):
+            super(PackageBomForm, self).__init__(*args, **kwargs)
+
+            for field in self.fields.values():
+                field.error_messages = {'required':'The field {fieldname} is required'.format(
+                    fieldname=field.label)}
+
+
 class ShoveBoxBomForm(ModelForm):
     class Meta:       
         model = Bom
