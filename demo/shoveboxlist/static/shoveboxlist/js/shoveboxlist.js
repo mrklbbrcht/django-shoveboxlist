@@ -1180,4 +1180,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
   window.onresize = initAllShoveBoxLists;
   // var shoveboxContents = document.getElementsByClassName("shoveboxcontent");
 
+
+  // If the django-calculation app is used, trigger it
+  if (window.calculatedFields) {
+      calculatedfields = window.calculatedFields
+      if ( calculatedfields)
+      {
+        for (let index = 0; index < calculatedFields.length; index++) {
+          let obj = calculatedFields[index];
+          obj.executeAll();
+          obj.field.dispatchEvent(new Event('oncalculate'));
+      }
+
+
+      };
+  }
+  
 });
+
+

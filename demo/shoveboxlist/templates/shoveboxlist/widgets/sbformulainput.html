@@ -2,7 +2,10 @@
 {% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}
 {% include "django/forms/widgets/attrs.html" %}
 
+
+{% comment %} Conflict with django-calculation  ?? {% endcomment %}
 onfocus="inputGotFocus(this)" onblur="inputGotBlurred(this)" 
 onmousedown="mouseDown(this)" 
  onmouseup="mouseUp(this)"
+
 style="z-index:1">

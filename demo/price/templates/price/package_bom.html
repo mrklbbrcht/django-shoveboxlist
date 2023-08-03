@@ -48,7 +48,7 @@
 
 </form>
 
-
+{{ form.media }}
 
 <script>
 
@@ -63,6 +63,8 @@ shoveboxlist = document.getElementById("shoveboxlist")
 {% block footer %}
 
 <script src="{% static 'shoveboxlist/js/context-menu.js' %}">;
+
+
 </script>
 
 <script>
@@ -71,10 +73,15 @@ var basePrefix =  "{{base_prefix }}" ;
 
 
 </script>
-
+{% comment %} https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import {% endcomment %}
+<script src="{% static 'calculation/js/calculation.js' %}" >;
+</script>
 
 <script src="{% static 'shoveboxlist/js/shoveboxlist.js' %}">;
+   
+
 </script>
+
 
 
 {% endblock footer %}

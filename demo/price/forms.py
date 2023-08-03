@@ -2,21 +2,25 @@ from django.forms import  RadioSelect,ModelForm,DecimalField
 from django.forms.widgets import NumberInput
 from price.models import Bom
 from shoveboxlist.forms import ShoveBox
-from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch, TextInput, SbTextInput, SbNumberInput, SbSelect
+from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch, TextInput, SbTextInput, SbNumberInput, SbSelect, SbFormulaInput
 
-import calculation
+from calculation import FormulaInput
 
 
 class PackageBomForm(ShoveBox):
 
         # Add calculated field (using django-calculation)         
-    amount = DecimalField(  widget=calculation.FormulaInput('quantity*unit_price', attrs={  'class':'sbfield','visibility':'100','step': '1'}))
+    amount = DecimalField( widget= SbFormulaInput ('quantity*unit_price') )
+    amount.widget.attrs['visibility']='100'
+    amount.widget.attrs['style']='width:10ch' 
+    amount.widget.attrs['class']='sbformulafield'
 
+#  attrs={  'class':'sbnumberfield','visibility':'100','step': '1','style': 'width:10ch'}
 
     class Meta:
         model = Bom
 
-        fields = ['level',	'recordtype','ref', 'article', 'description', 'unit_type','unit','quantity' ,'unit_price' ,'amount']
+        fields = ['level',	'recordtype','ref', 'article', 'description', 'unit_type','unit','quantity' ,'unit_price' ]
         # fields = ['level',	'recordtype','ref', 'article', 'description', 'unit_type','unit','quantity' ,'unit_price']
 
         # For all fields a Shoveboxlist compatible widget has to be specified
@@ -39,9 +43,7 @@ class PackageBomForm(ShoveBox):
          'unit':SbSelect(attrs={ 'class':'sbselectfield','visibility':'100',}),
 
          'quantity':SbNumberInput(     attrs={  'class':'sbnumberfield','visibility':'100','step': '1','style': 'width:10ch',}),
-         'unit_price':SbNumberInput(     attrs={  'class':'sbnumberfield','visibility':'100','step': '1','style': 'width:10ch'})
-
-
+         'unit_price':SbNumberInput(     attrs={  'class':'sbnumberfield','visibility':'100','step': '1','style': 'width:10ch'}),
 
           }
         

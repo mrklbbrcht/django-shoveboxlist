@@ -124,6 +124,17 @@ div[shoveboxselected="true"]  {
   }
 
 
+.sbformulafield  {
+  /* removes the spinners in Firefox */
+    -moz-appearance: textfield ;
+  
+    text-align: right;
+    font-size : var( --font-size);
+  
+    border:none ;
+  }
+
+
 /* Applies to all input of which the parent node is shovebox with attribute  shoveboxselected="true" */
 /* https://www.w3schools.com/cssref/css_selectors.php */
 /* IMportant is necessary to override the attributes set by javascript */

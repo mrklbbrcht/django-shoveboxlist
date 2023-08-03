@@ -1,4 +1,5 @@
 from  django.forms.widgets import NumberInput, TextInput,  ChoiceWidget, CheckboxInput, Select
+from django.conf import settings
 
 class TypeSwitch(ChoiceWidget):
   #  input_type = "radio"
@@ -56,3 +57,17 @@ class DeleteCheckbox(CheckboxInput):
 
 class SbSelect(Select):
     template_name = "shoveboxlist/widgets/sbselect.html"
+
+
+
+
+
+
+calculation_app_installed = 'calculation' in settings.INSTALLED_APPS
+
+if (calculation_app_installed ):
+
+    from calculation.widgets import FormulaInput
+
+    class SbFormulaInput(FormulaInput):
+        template_name = "shoveboxlist/widgets/sbformulainput.html"
