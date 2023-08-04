@@ -1,3 +1,7 @@
+"use strict";
+
+
+
 // get formating information from css file
 var shoveBoxStyle = getComputedStyle(document.body);
 
@@ -186,9 +190,6 @@ function updateTotalFormCount(shoveBoxList) {
 // first time initialization or refreshing (resizing) of shoveboxlist
 function initShoveboxlist(shoveboxlist) {
 
-
-
-
   shoveboxlist.operation = Operation.None;
 
   var sbl_items = [
@@ -285,42 +286,13 @@ function initShoveboxlist(shoveboxlist) {
               // * matches any position
               // $ matches the end
 
-
-
-
-
               nextShoveBoxIndex++;
-
 
               // VERTICAL MOVE
               afterThisBox = insertAfter(copiedBox, afterThisBox);
 
 
-
-
-
-
             };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             break;
@@ -416,8 +388,8 @@ function initShoveboxlist(shoveboxlist) {
 
       if (child.className == "shovebox") {
 
-        shovebox = child;
-        slider = curr_boxlevel = shovebox.getElementsByClassName("slider")[0];
+        let shovebox = child;
+        let slider = shovebox.getElementsByClassName("slider")[0];
         initializeTypeswitches(shovebox);
 
         // Reposition 
@@ -841,7 +813,7 @@ function move(shovebox, levelslider) {
 
   var fontSize = getDefaultFontSize()[1];
 
-  thumb_in_px = ((levelslider.value - levelslider.min) * ((levelslider.scrollWidth - ((fontSize + 4) * gripwidth)) / (levelslider.max - levelslider.min)));
+  var thumb_in_px = ((levelslider.value - levelslider.min) * ((levelslider.scrollWidth - ((fontSize + 4) * gripwidth)) / (levelslider.max - levelslider.min)));
 
   // calculate the position after the current slider position from where the first field (typeswitch) can start
   var leftStart = String((thumb_in_px) + ((fontSize + 4) * gripwidth * 1.25)) + 'px';
@@ -1098,7 +1070,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   // If the django-calculation app is used, trigger it
   if (window.calculatedFields) {
-    calculatedfields = window.calculatedFields
+    const calculatedfields = window.calculatedFields
     if (calculatedfields) {
       for (let index = 0; index < calculatedFields.length; index++) {
         let obj = calculatedFields[index];
