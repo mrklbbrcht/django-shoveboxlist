@@ -1,17 +1,15 @@
 from django.views import generic
 from .models import Package,Bom
-from .forms import PackageBomForm, ShoveBoxBomForm
-
+from .forms import PackageBomForm,BomEditForm
 from shoveboxlist.widgets import DeleteCheckbox
 from shoveboxlist.forms import ShoveboxInlineFormSet
-
 from django.forms.models import  inlineformset_factory
 from django.shortcuts import get_object_or_404
 import json
 from django.urls import reverse_lazy
-
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 import json
+
 
 class BillOfMaterialsFormView(generic.edit.UpdateView):
     model = Package
@@ -27,11 +25,7 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
     for p in packages:
         packagelist.append((p.id,p.description))
 
-
-    
-
-
-
+ 
     def get_context_data(self, **kwargs):
         context = super(BillOfMaterialsFormView, self).get_context_data(**kwargs)
         package = self.object
@@ -48,27 +42,9 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
             if formset.is_valid():
                 formset.save()
 
-
         else:
 
-
             context['formset'] = PackageBomFormSet( instance=package, queryset=queryset)
-
-        # context['author'] = package
-
-
-
-    # def __init__(self, *args, **kwargs):
-    #     package_id = int(kwargs.pop('package_id',None))
-    #     super(BillOfMaterialsFormView,self).__init__(*args, **kwargs)
-    #     self.fields['package'].initial = package_id
-
-
-    # bom_package_select = ChoiceField(choices=packagelist,  widget=Select(attrs={'onchange': 'form.submit();'}))
-
-
-
-
 
         return context
 
@@ -84,8 +60,6 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
                 return super().form_invalid(form) 
 
 
-
-
     def render_to_response(self, context, **response_kwargs):
 
         response_kwargs.setdefault("content_type", self.content_type)
@@ -97,9 +71,6 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
 
         # strip 2 last characters  -0 from first indexed form
         context['base_prefix'] =  fs.forms[0].prefix[:-2]
-
-
-
 
         # add also the available packages to the context to establish the select element
         context['packagelist'] = self.packagelist
@@ -114,15 +85,17 @@ class BillOfMaterialsFormView(generic.edit.UpdateView):
         )
 
 
-
 class ShoveBoxListEdit(generic.edit.UpdateView):
     model = Bom
-    form_class= ShoveBoxBomForm
-    success_url = reverse_lazy("price:sbl_bom_edit",  kwargs={'pk': 2}) 
+    form_class= BomEditForm
+    
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save()
+        return HttpResponse('<script type="text/javascript">window.close();</script>')
 
-
+    
+# Go directly to the sandbox package demo formset
 def home(request):
-    """Renders the home page."""
-
     return HttpResponseRedirect('/price/bom/1')
 

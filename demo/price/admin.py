@@ -9,7 +9,7 @@ admin.site.register(Package, PackageAdmin)
 
 
 class BomAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ["package"]
 admin.site.register(Bom, BomAdmin)
 
 

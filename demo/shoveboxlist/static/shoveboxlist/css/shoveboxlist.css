@@ -10,39 +10,24 @@
 
     /* --shoveboxheight :1.5em; */
     --shoveboxheight :1.5em;
-
     --shoveboxborder :1 px;
-
-
     --shoveboxbordercolordefault : rgba(0, 0, 0, 0.125);
-
     --shoveboxbordercolorselected : black;
-    /* --shoveboxbordercolorselected :rgb(205, 232, 255); */
-
     --shoveboxborderselectedwidth :2px; 
     --shoveboxbordertargetedwidth :4px; 
 
-    /* gripheight bepaald door inhoud vermits flex-inline */
+    /* gripheight determined by content since flex-inline */
     --gripradius :2px;
     --shoveboxplaceholderheight : 0.06rem;
     --shoveboxplaceholderoverheight : 1.5rem;
-
     --borderscolor :  #ccc;
 
  /* color of freed space to left of slider's thumb */
     --freespacecolor :transparent;
 /* typewitch parameters */
-
-    /* --radiounit:30px;
-    --radiotextunit:1em; */
-    /* --radioheight: calc(var(--radiotextunit ) * 1.175); */
-    /* --indicatordisplacement:  calc(var(--radiotextunit ) * 1.175); */
  
     --radiodot: calc(     var(--shoveboxheight) * 0.9 );
-
-
     --typeswitchborder: 2px;
-
     --radiotextlength: 4;
     --radiotexttotalwidth: calc((var(--radiotextlength) + 1) * 1em);
     
@@ -52,16 +37,6 @@
     --color0 :rgb(235,235,235); 
     --color1 :rgb(203,235,194);
     --color2 : rgb(239,225,207);
-
-    /* --colorSelected :yellow; 
-    --color0 :rgb(235,235,235); 
-    --color1 :rgb(203,235,194);
-    --color2 : rgb(215,216,240); */
-
-    /* --colorSelected :rgb(215,216,240);
-    --color0 :white; 
-    --color1 :rgb(203,235,194);
-    --color2 : rgb(235,235,235);  */
 
     --font-size:   normal;
     --fontWeight0 : normal;
@@ -85,12 +60,9 @@
 
 
 
-
 div[shoveboxselected="true"]  {
 
   border-color: var(--shoveboxbordercolorselected);
-  /* border-width: var( --shoveboxborderselectedwidth) ; */
-
   border-bottom-width:var( --shoveboxborderselectedwidth) ;
   border-top-width:var( --shoveboxborderselectedwidth) ;
 }
@@ -100,15 +72,7 @@ div[shoveboxselected="true"]  {
 
 .sbselectfield   {
 
-  /* border-color: var(--color0) ;
-  border-width: 0px ; */
-
-
-
-  /* avoid firefox 3D border style */
-  /* border-style: solid; */
-
-  border-width: 0px;
+   border-width: 0px;
   font-size : var( --font-size);
 }
 
@@ -137,18 +101,9 @@ div[shoveboxselected="true"]  {
 
 /* Applies to all input of which the parent node is shovebox with attribute  shoveboxselected="true" */
 /* https://www.w3schools.com/cssref/css_selectors.php */
+
 /* IMportant is necessary to override the attributes set by javascript */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/important */
-
-
-/* input[type=number] {
-
-
-
-  
-} */
-
-
 
 
 .shovebox[shoveboxselected="true"] > input {
@@ -162,10 +117,6 @@ div[shoveboxselected="true"]  {
   background-color: var(--colorSelected) !important;
 }
 
-/* .shovebox[shoveboxselected="true"] > .typeswitch  {
-  
-  background-color: var(--colorSelected) !important;
-} */
 
 .shovebox[shoveboxselected="true"] > select  {
   
@@ -177,42 +128,11 @@ div[shoveboxselected="true"]  {
   background-color: var(--colorSelected) !important;
 }
 
-
-
 div[targetselected="true"]  {
 
   border-bottom-width:var( --shoveboxbordertargetedwidth) ;
   border-bottom-color: var(--targetSelected);
 }
-/* 
-.shovebox[targetselected="true"] > input {
-  
-  background-color: var(--targetSelected) !important;
-}
-
-
-.shovebox[targetselected="true"]  {
-  
-  background-color: var(--targetSelected) !important;
-}
-
-.shovebox[targetselected="true"] > .typeswitch  {
-  
-  background-color: var(--targetSelected) !important;
-}
-
-.shovebox[shoveboxselected="true"] > select  {
-  
-  background-color: var(--targetSelected) !important;
-}
-
-.shovebox[targetselected="true"] > label  {
-  
-  background-color: var(--targetSelected) !important;
-} */
-
-
-
 
 
 .shovebox {
@@ -224,7 +144,6 @@ div[targetselected="true"]  {
   position: relative;
   display: block;
   text-decoration: none;
-  /* border: var(--shoveboxborder) solid  var(--shoveboxbordercolordefault) ; */
   border: 0 solid  var(--shoveboxbordercolordefault) ; 
   overflow:hidden;
   white-space: nowrap;
@@ -240,7 +159,6 @@ input[type="text"], textarea {
     border-right-width: 1px;
     border-bottom-width: initial;
     border-left-width: initial;
-
     /* border-style: none|hidden|dotted|dashed|solid|double|groove|ridge|inset|outset|initial|inherit; */
     border-top-style: initial;
     border-right-style: dotted;
@@ -255,16 +173,9 @@ input[type="text"], textarea {
     border-image-width: initial;
     border-image-outset: initial;
     border-image-repeat: initial;
-
     font-size : var( --font-size);
 
 }
-
-
-
-
-
-
 
 input[type=radio] {
   font-size : var( --font-size);
@@ -343,12 +254,6 @@ input[type=radio] {
 }
 
 
-
-
-
-
-
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -404,9 +309,9 @@ input::-webkit-inner-spin-button {
   opacity: 1;
 }
 
-/* ---------------------------------- */
+
 /*             TYPEWITCH              */
-/* ---------------------------------- */
+
 .typebutton{
 
   /* height: var(  --radiodot);
@@ -414,11 +319,7 @@ input::-webkit-inner-spin-button {
 
   height :calc(0.75*var(  --radiodot)); 
   width  :calc(0.75*var(  --radiodot)); 
-
-
   margin: 0;
-
-/* position:inherit; */
   appearance: none;
   background-color:white;
   border-radius: 50%;
@@ -433,14 +334,10 @@ input::-webkit-inner-spin-button {
   background-color :red;
 }
 .typeswitch {
-  /* border: var(--typeswitchborder) solid  ; */
-  
-  /* height: calc(  var(  --radiodot)  + var(--typeswitchborder)  ); */
 
   height: var(--font-size); 
   background-color :var( --color0 );
 
-  /* border-radius: var(  --radiodot); */
   border-radius:var(  --radiodot); 
 
   border: 0;
@@ -450,9 +347,6 @@ input::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
 }
-
-
-
 
 
 .typeswitch .slider {
@@ -516,10 +410,6 @@ label.deletecheckbox-label img {
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
 }
-
-/* :checked + label {
-  border-color: #ddd;
-} */
 
 :checked + label.deletecheckbox-label:before {
   content: "X";

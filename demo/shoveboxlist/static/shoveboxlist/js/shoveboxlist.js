@@ -1,4 +1,5 @@
-"use strict";
+// to do: enable use strict, test all functions and tweak
+// "use strict";
 
 
 
@@ -227,6 +228,11 @@ function initShoveboxlist(shoveboxlist) {
 
         // ReCall the function that determines the reference field value
         ContentFormating.autoref(newShoveBoxElement.parentNode);
+
+        // set focus to the newly added shovebox
+        unselectShoveboxes(shoveboxlist);
+        newShoveBoxElement.setAttribute('shoveboxselected',true);
+
 
       }
     },
@@ -644,14 +650,17 @@ function inputHover(contentElement) {
 
 function editPopup(shoveBox) {
 
-  idElement = document.getElementsByName(shoveBox.attributes["shovebox-id"].value + "-id");
-  edit_url = detailEditUrl + idElement[0].value;
+  var idElement = document.getElementsByName(shoveBox.attributes["shovebox-id"].value + "-id");
+  var edit_url = detailEditUrl + idElement[0].value;
 
   // var indeks = shovebox.parentElement.shoveBoxNodes.indexOf(shoveBox);
 
+  // about to open up a popup window. register this, will be used later on
+  window.openedPopup = true
   showPopup(edit_url);
 
-  location.reload();
+  // After editing in detail popupscreen and closing if valid, reload of the window takes place through the window.focus event (after lostfocus to detail form)
+ 
 
 
   // var txt;
@@ -1059,6 +1068,30 @@ document.body.addEventListener('keydown', (event) => {
 document.body.addEventListener('keyup', (event) => {
   keyUp(event);
 });
+
+
+window.addEventListener('focus', function(){
+  console.log('focus');
+if (window.hasLostFocus == true) {
+  if (  window.openedPopup == true )   {
+    document.location.reload(); 
+
+      // reset
+    window.hasLostFocus = false
+    window.openedPopup = false
+  }
+    }
+
+});
+
+window.addEventListener('blur', function(){     
+
+  window.hasLostFocus = true
+
+
+  console.log('leave');
+});
+
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
