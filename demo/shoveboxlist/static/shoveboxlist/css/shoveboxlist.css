@@ -177,6 +177,17 @@ input[type="text"], textarea {
 
 }
 
+
+/* https://stackoverflow.com/questions/2011142/how-to-change-the-style-of-the-title-attribute-inside-an-anchor-tag */
+input[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  top: -100%;
+  left: 0;
+  color:red
+}
+
+
 input[type=radio] {
   font-size : var( --font-size);
 }
