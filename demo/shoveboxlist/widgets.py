@@ -45,6 +45,13 @@ class SbTextInput(TextInput):
     input_type = "text"
     template_name = "shoveboxlist/widgets/sbtextinput.html"
 
+class SbShrinkableTextInput(TextInput):
+    input_type = "text"
+    template_name = "shoveboxlist/widgets/sbshrinkabletextinput.html"
+
+
+
+
 class SbNumberInput(NumberInput):
     input_type = "number"
     template_name = "shoveboxlist/widgets/sbnumberinput.html"

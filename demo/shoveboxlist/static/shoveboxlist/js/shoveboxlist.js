@@ -22,6 +22,8 @@ var shoveBoxPlaceHolderOverHeight = shoveBoxStyle.getPropertyValue('--shoveboxpl
 
 var ctrlKeyDown = false;
 
+// special treatment for tooltip of shrinkable textinput
+var old_title;
 
 class Operation {
   // Create new instances of the same class as static attributes
@@ -546,6 +548,30 @@ function mouseUp(contentElement) {
 
   }
 }
+
+
+function mouseOver(contentElement) {
+  if (!contentElement.attributes["class"].value.includes("shrinkkable")) {
+    // console.log('mouserover ');
+
+    // var dynTooltipSpan = document.createElement("span");
+    // dynTooltipSpan.setAttribute("id","dynamictooltip");
+    // contentElement.appendChild(dynTooltipSpan.cloneNode(true));
+    // old_title = contentElement.attributes["title"].value;
+    // contentElement.childNodes[0].innerHTML= contentElement.attributes["title"].value;
+    // contentElement.attributes["title"].value = '';
+  }
+}
+
+function mouseLeave(contentElement) {
+  if (!contentElement.attributes["class"].value.includes("shrinkkable")) {
+  // console.log('mouseleave ');
+  // contentElement.setAttribute("title",old_title);
+  // contentElement.childNodes[0].visibility='hidden';
+  }
+}
+
+// https://jsfiddle.net/4psys/mkhbdw5x/8/
 
 
 function dragEnd(contentElement) {

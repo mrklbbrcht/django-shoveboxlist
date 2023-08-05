@@ -178,14 +178,47 @@ input[type="text"], textarea {
 }
 
 
-/* https://stackoverflow.com/questions/2011142/how-to-change-the-style-of-the-title-attribute-inside-an-anchor-tag */
-input[title]:hover::after {
+/* https://stackoverflow.com/questions/2011142/how-to-change-the-style-of-the-title-attribute-inside-an-anchor-tag 
+
+https://stackoverflow.com/questions/57154686/how-do-i-display-tooltip-text-for-html-input-element-using-css-style-and-data
+
+*/
+/* input[title]:hover::after {
   content: attr(title);
   position: absolute;
   top: -100%;
   left: 0;
   color:red
+} */
+
+/* .shrinkable[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
 }
+
+
+.shrinkable[data-title]:after {
+  content: attr(data-title);
+  background-color: lightblue;
+  color:red;
+  font-size: 12pt;
+  font-weight: bold;
+  position: absolute;
+  padding: 1px 5px 2px 5px;
+  bottom: -1.6em;
+  left: 100%;
+  white-space: nowrap;
+  box-shadow: 1px 1px 3px #222222;
+  opacity: 0;
+  border: 1px solid #111111;
+  z-index: 99999;
+  visibility: hidden;
+}
+
+.shrinkable[data-title] {
+  position: relative;
+} */
 
 
 input[type=radio] {
@@ -319,6 +352,30 @@ input::-webkit-inner-spin-button {
   visibility: visible;
   opacity: 1;
 }
+
+
+
+
+
+#dynamictooltip{
+  visibility: hidden; 
+  padding: 0px;
+  border: solid 1px #f9f9f9;
+  display:block;
+  box-shadow: 3px 3px 3px #1a1a1a;
+  color: red;
+  z-index: 2;
+  position: absolute;
+  top: 20px;
+}
+
+
+
+
+
+
+
+
 
 
 /*             TYPEWITCH              */

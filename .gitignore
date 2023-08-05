@@ -65,3 +65,5 @@ coverage.xml
 
 production_static/
 media/sendgrid.env
+
+xlsx/

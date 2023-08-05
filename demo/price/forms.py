@@ -2,7 +2,7 @@ from django.forms import  RadioSelect,ModelForm,DecimalField, ChoiceField
 from django.forms.widgets import NumberInput
 from price.models import Bom,Package
 from shoveboxlist.forms import ShoveBox
-from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch,Select, SbTextInput, SbNumberInput, SbSelect, SbFormulaInput
+from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch,Select, SbTextInput, SbNumberInput, SbSelect, SbFormulaInput, SbShrinkableTextInput
 
 from calculation import FormulaInput
 
@@ -45,7 +45,7 @@ class PackageBomForm(ShoveBox):
          'recordtype' : TypeSwitch(choices= Bom.RecordType.choices),
 
          'ref': Reference(attrs={ 'class':'ref sbfield', 'size':'8','visibility':'110' , }),
-         'description': SbTextInput(attrs={ 'class':'shrinkable sbfield','visibility':'111',}),
+         'description': SbShrinkableTextInput(attrs={ 'class':'shrinkable sbfield','visibility':'111',}),
 
          'article' : SbTextInput(attrs={ 'class':'sbfield','visibility':'100','size':'6',}),
          'unit_type': SbSelect(attrs={ 'visibility':'100','class':'sbselectfield'}),
