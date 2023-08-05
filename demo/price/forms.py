@@ -1,12 +1,8 @@
-from django.forms import  RadioSelect,ModelForm,DecimalField, ChoiceField
-from django.forms.widgets import NumberInput
-from price.models import Bom,Package
+from django.forms import  ModelForm,DecimalField
+from django.forms.widgets import Textarea
+from price.models import Bom
 from shoveboxlist.forms import ShoveBox
 from shoveboxlist.widgets import  LevelSlider, Reference, TypeSwitch,Select, SbTextInput, SbNumberInput, SbSelect, SbFormulaInput, SbShrinkableTextInput
-
-from calculation import FormulaInput
-
-from django.core.exceptions import ValidationError
 
 
 # overwrite the Decimalfield to be used for calculated fields only
@@ -63,3 +59,7 @@ class BomEditForm(ModelForm):
         fields = ['ref','recordtype', 'article','description', 'unit_type','unit','quantity' ,'unit_price','package']
 
 
+        widgets = {
+
+         'description' : Textarea(     attrs={  'style': 'color:red'}),
+       }
