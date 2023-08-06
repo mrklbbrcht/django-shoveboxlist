@@ -193,19 +193,27 @@ function updateTotalFormCount(shoveBoxList) {
 // first time initialization or refreshing (resizing) of shoveboxlist
 function initShoveboxlist(shoveboxlist) {
 
+
+// https://github.com/mturco/context-menu
+// Contextmenu of type sbl_items to open by rightclicking when on the shoveboxlist as a whole
+
+  // var sbl_items = [
+  //   { name: 'Cut', fn: function (target) { console.log('Cut', target); } },
+  //   { name: 'Copy', fn: function (target) { console.log('Copy', target, target.id); } },
+  //   { name: 'Paste', fn: function (target) { console.log('Paste', target); } },
+  //   {},
+  //   { name: 'Select All', fn: function (target) { console.log('Select All', target); } },
+  // ];
+
+  // var cm1 = new ContextMenu('.shoveboxlist', sbl_items);
+
+
+  
   shoveboxlist.operation = Operation.None;
 
-  var sbl_items = [
-    { name: 'Cut', fn: function (target) { console.log('Cut', target); } },
-    { name: 'Copy', fn: function (target) { console.log('Copy', target, target.id); } },
-    { name: 'Paste', fn: function (target) { console.log('Paste', target); } },
-    {},
-    { name: 'Select All', fn: function (target) { console.log('Select All', target); } },
-  ];
-
-  // Contextmenu of type sbl_items to open by rightclicking when on the shoveboxlist 
-  var cm1 = new ContextMenu('.shoveboxlist', sbl_items);
-
+  // https://github.com/mturco/context-menu
+  // Contextmenu type sb_items to open by rightclicking when on the slider  and 
+  // Contextmenu type sb_items to open by rightclicking when in an shovebox field 
 
   var sb_items = [
 
@@ -241,7 +249,7 @@ function initShoveboxlist(shoveboxlist) {
 
     // { name: 'Copy Content', fn: function (target) { console.log('Geklikt op element met id = ', target.id); } },
     {
-      name: 'Copy Record(s)', fn: function (target) {
+      name: 'Copy Records (Ctrl+C)', fn: function (target) {
 
         shoveboxlist.operation = Operation.Copy;
 
@@ -249,7 +257,7 @@ function initShoveboxlist(shoveboxlist) {
     },
     // { name: 'Cut Content', fn: function (target) { console.log('Geklikt op element met id = ', target.id); } },
     {
-      name: 'Cut Record(s)', fn: function (target) {
+      name: 'Cut Records  (Ctrl+X)) ', fn: function (target) {
 
         shoveboxlist.operation = Operation.Cut;
 
@@ -257,7 +265,7 @@ function initShoveboxlist(shoveboxlist) {
     },
 
     {
-      name: 'Paste Record(s)', fn: function (target) {
+      name: 'Paste Records (Ctrl-V)', fn: function (target) {
 
         // Get ShoveBox the menuitem was invoked from
         const callingShoveBox = getCorrespondingShoveBoxNode(target);
@@ -333,9 +341,9 @@ function initShoveboxlist(shoveboxlist) {
 
       }
     },
-    // { name: 'Delete this record', fn: function (target) { console.log('Geklikt op element met id = ', target.id); } },
+  
     {
-      name: 'Delecte Selected Record(s)', fn: function (target) {
+      name: 'Delecte Selected Records (Del)', fn: function (target) {
 
 
         // Get ShoveBox the menuitem was invoked from
@@ -357,7 +365,7 @@ function initShoveboxlist(shoveboxlist) {
 
 
     {
-      name: 'Unselect', fn: function (target) {
+      name: 'Unselect (Ctrl+U)', fn: function (target) {
 
 
         // Get ShoveBox the menuitem was invoked from
@@ -369,15 +377,17 @@ function initShoveboxlist(shoveboxlist) {
     },
 
     {},
-    { name: 'Print', fn: function (target) 
+    { name: 'Print (Ctrl+P)', fn: function (target) 
       { alert('This function is to be implemented in your project. \n Clicked on element with id = '+ target.id ); } 
     },
-    { name: 'Settings', fn: function (target) 
+    { name: 'Settings (Ctrl+S)', fn: function (target) 
       { alert('This function is to be implemented in your project. \n Clicked on element with id = '+ target.id ); } 
     },
 
   ];
 
+
+  // Notes:
   // https://stackoverflow.com/questions/61135510/add-row-dynamically-in-django-formset
   // https://stackoverflow.com/questions/13387446/changing-the-display-order-of-forms-in-a-formset
   // https://stackoverflow.com/questions/47494507/django-using-can-order-to-change-order-of-forms-in-formset#:~:text=Yes%2C%20by%20specifying%20can_order%3DTrue%20in%20you%20formset_factory%2C%20the,the%20forms%20in%20order%20using%20formset.ordered_forms.%20For%20example%3A
@@ -1097,7 +1107,7 @@ document.body.addEventListener('keyup', (event) => {
 
 
 window.addEventListener('focus', function(){
-  console.log('focus');
+
 if (window.hasLostFocus == true) {
   if (  window.openedPopup == true )   {
     document.location.reload(); 
@@ -1114,8 +1124,6 @@ window.addEventListener('blur', function(){
 
   window.hasLostFocus = true
 
-
-  console.log('leave');
 });
 
 
