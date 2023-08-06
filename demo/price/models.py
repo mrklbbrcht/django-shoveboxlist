@@ -16,7 +16,7 @@ class Package(models.Model):
 class Bom(models.Model):
     class RecordType(models.TextChoices): 
         N = 'N', 'Normal items'
-        T = 'T', 'Titel'
+        T = 'T', 'Title'
         C = 'C',  'Comment'
 
     class UnitTypes(models.TextChoices): 
