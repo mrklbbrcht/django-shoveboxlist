@@ -1,0 +1,39 @@
+{% comment %} {% load static %}
+<img src="{% static 'shoveboxlist/images/delete.png' %}" alt="Delete" visibility='111' style="height:var(--radiodot);padding:1px;  align-items: center;
+justify-content: center;" class="dustbin sbfield"   onfocus="inputGotFocus(this)" onblur="inputGotBlurred(this)">
+<input type="{{ widget.type }}" name="{{ widget.name }}"
+{% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}
+{% include "django/forms/widgets/attrs.html" %}
+title="Markeer deze shovebox om te wissen. Voor effectief wissen, druk op bewaren knop."
+data-toggle="tooltip" class="deletemarker sbfield"  visibility='111' onfocus="inputGotFocus(this)" onblur="inputGotBlurred(this)"
+> {% endcomment %}
+
+
+{% load static %}
+
+
+
+
+
+<input class="deletecheckbox" hidden type="{{ widget.type }}" name="{{ widget.name }}"
+{% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}
+
+
+{% include "django/forms/widgets/attrs.html" %}
+
+
+
+>
+
+<label class="deletecheckbox-label" for="{{widget.attrs.id}}" visibility='111' >
+    <img src="{% static 'shoveboxlist/images/delete.png' %}" alt="Delete"  class="dustbin sbfield"   onfocus="inputGotFocus(this)" onblur="inputGotBlurred(this)"
+    
+title="Markeer deze shovebox om te wissen. Voor effectief wissen, druk op bewaren knop."
+data-toggle="tooltip" class="deletemarker sbfield"  visibility='111' onfocus="inputGotFocus(this)" onblur="inputGotBlurred(this)"
+
+    >
+</label>
+
+
+
+    

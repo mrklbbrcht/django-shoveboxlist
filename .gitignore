@@ -25,6 +25,7 @@ node_modules/
 # Distribution / packaging
 .Python
 .env/
+1.env
 env27/
 lib/
 env_oud/

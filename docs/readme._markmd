@@ -1,0 +1,17 @@
+# Credentials superuser
+superuser = superuser
+password = letmein
+
+
+## Demo data
+# Backup
+python manage.py dumpdata > dump/dumped_data.json
+
+
+
+
+https://www.youtube.com/watch?v=S1XSmiIV3LI
+
+setuptools = needed for packaging
+wheel = needed to facilitate installation process
+twine = needed tot publish tot the Python Package Index PyPI

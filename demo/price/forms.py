@@ -10,7 +10,7 @@ class CalcDecimalField(DecimalField):
 # No need to raise an validation error since it is a calculated field, not persisted to the database
     def validate(self, value):
         if value in self.empty_values and self.required:
-            pass
+            passpip 
 
 
 
