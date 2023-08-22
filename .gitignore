@@ -72,3 +72,5 @@ production_static/
 media/sendgrid.env
 
 xlsx/
+
+own_docs/
