@@ -44,7 +44,7 @@ var/
 *.egg
 
 
-.vscode
+.vscode/
 
 
 # PyInstaller
